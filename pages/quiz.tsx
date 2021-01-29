@@ -65,7 +65,7 @@ export default function Quiz() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
-        <QuizLogo />
+        <QuizLogo className="" />
         <Widget>
           <Widget.Header>
             <h1>The Legend of Zelda</h1>
