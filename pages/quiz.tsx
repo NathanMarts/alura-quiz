@@ -11,12 +11,11 @@ import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
 import * as Yup from 'yup'
 import getValidationErrors from '../src/Utils/getValidationErrors'
-import router from 'next/router'
 
 const appearFromRight = keyframes`
   from{
     opacity: 0;
-    transform: translateX(200px);
+    transform: translateX(-200px);
   }
   to{
     opacity: 1;
@@ -38,7 +37,7 @@ const QuizContainer = styled.div`
   }
 `
 
-export default function Home() {
+export default function Quiz() {
   const formRef = useRef<FormHandles>(null)
 
   const handleSubmit = useCallback(async (data: { nome: string }) => {
@@ -52,8 +51,6 @@ export default function Home() {
       await schema.validate(data, {
         abortEarly: false
       })
-
-      router.push('/quiz')
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err)
@@ -73,6 +70,7 @@ export default function Home() {
           <Widget.Header>
             <h1>The Legend of Zelda</h1>
           </Widget.Header>
+          <Widget.Img src="https://placehold.it/400x400" alt="" />
           <Widget.Content>
             <Form ref={formRef} onSubmit={handleSubmit}>
               <Input name="nome" placeholder="Diz ai seu nome" />
